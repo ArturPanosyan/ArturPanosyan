@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>restaurant-microservices</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>discovery-service</module>
+        <module>api-gateway</module>
+        <module>auth-service</module>
+        <module>order-service</module>
+        <module>menu-service</module>
+        <module>notification-service</module>
+        <!-- Add more modules as needed -->
+    </modules>
+
+    <properties>
+        <java.version>11</java.version>
+        <spring-boot.version>2.5.0</spring-boot.version>
+        <kafka.version>2.8.0</kafka.version>
+        <!-- Add other common properties here -->
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Define common dependencies here -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Add other common dependencies like Spring Boot starters, Kafka, etc. -->
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- Maven plugins configuration -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- Add other plugins as needed -->
+        </plugins>
+    </build>
+</project>
