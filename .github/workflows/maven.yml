@@ -1,0 +1,34 @@
+name: CI Pipeline
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Build with Maven
+      run: mvn clean package
+
+    - name: Test with Maven
+      run: mvn test
+
+    - name: Deploy to Kubernetes
+      run: kubectl apply -f ./kubernetes-manifests
+      env:
+        KUBECONFIG: ${{ secrets.KUBECONFIG }}
